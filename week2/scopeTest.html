@@ -5,13 +5,119 @@
     <title>Scope Tests</title>
 </head>
 <body>
-    <script>
+<script>
+
+
+    /*let x = 0;
+
+    (function foo() {
+        let x = 1;
+        document.writeln(x)
+    })()
+
+    document.writeln(x);
+
+    const id = x => x;
+    const Konst = x => y => x;
+
+    // const Kite = x => y => y; // Kann auch aus den anderen beiden Funktionen hergeleitet werden
+
+    const Kite = Konst(id);
+
+    document.writeln(id(id) === id);
+    document.writeln(Konst(id)(undefined) === id);
+    document.writeln(Kite(undefined)(id) === id);
+*/
 
 
 
+/*
+    let x=0;
+    (()=>{
+        let x=2;
+        return x;
+    })();
+
+    try{
+        document.writeln(x===0)
+    } catch(e){
+        document.writeln(false)
+    }
+*/
 
 
-    </script>
+/*
+   let x = 0;
+    (()=>{
+        let x = 2;
+        return x;
+    })();
+
+    try{
+        document.writeln(x === 0)
+    } catch(e){
+        document.writeln(false)
+    }*/
+
+
+    //5 points
+/*    function two(){
+         x = 2;
+        return x;
+    }
+
+    try {
+        x;
+        document.writeln(true)
+    } catch(e){
+        document.writeln(false)
+    }*/
+
+    /**
+     * Given
+     const id  = y => y
+     const fst = x => y => x
+     We want to write 'snd' such that it returns the second argument like
+     const snd = x => y => y
+     but we can only use fst and id (not x and y) for the implementation.
+     You might need eta operations to find the solution.
+     The start of the function definition is added for you. Provide the function body only.
+     const snd = <your code will be added here>
+     */
+
+
+/*    const id  = y => y
+    const fst = x => y => x
+    const snd = fst(id);
+
+
+    const x_ = Math.random();
+    const y_ = Math.random();
+    document.writeln(snd(x_)(y_) === y_)*/
+
+
+    const id = x => x;
+    const konst =x => y => x;
+
+    const a1 = y => id(y);
+    const a2 = y => y;
+
+    //document.writeln(a1(1))
+    //document.writeln(a2(1))
+
+
+    const F1 = x => y => konst(id)(x)(y);
+    const F2 = x => konst (id)(x);
+    const F3 = konst(id);
+
+    const dl = (dl) => document.writeln(dl);
+
+    //dl(F2(1));
+   // dl("\n")
+    dl(F1(1));
+
+
+</script>
 </body>
 </html>
 
