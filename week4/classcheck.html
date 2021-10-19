@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClassCheck</title>
+</head>
+<body>
+
+<script>
+    /*
+        const times = a => b => a * b;
+        const twoTimes = times(2);
+
+        console.log([1, 2, 3].map(x => times(2)(x)));
+        console.log([1, 2, 3].map(times(2)));
+        console.log([1, 2, 3].map(twoTimes));
+
+        const odd = x => x % 2 === 1;
+
+        console.log([1, 2, 3].filter(x => x % 2 === 1));
+        console.log([1, 2, 3].filter(x => odd(x)));
+        console.log([1, 2, 3].filter(odd));
+
+        const plus = (accu, cur) => accu + cur;
+
+        console.log([1, 2, 3].reduce((accu, cur) => accu + cur));
+        console.log([1, 2, 3].reduce(plus));
+
+        // variant with initial accu value as 2nd argument
+        // then cur starts at first element
+        console.log([1, 2, 3].reduce(plus, 0));*/
+
+    /*const twice = x => x*2;
+
+
+
+
+    document.write([1,2,3].map(twice).toString())
+    document.writeln([1,2,3].map(twice).toString() === "2,4,6")*/
+
+    /*
+    const divides = x => y => y % x === 0;
+
+    document.writeln([1,2,3,4,5,6].filter(divides(3)).toString())
+    document.writeln([1,2,3,4,5,6].filter(divides(3)).toString() === "3,6")
+    */
+
+
+    const join = slash => (accu, cur) => accu + slash + cur;
+
+    document.writeln([1, 2, 3].reduce(join('-')));
+    document.writeln([1, 2, 3].reduce(join('-')) === '1-2-3');
+
+</script>
+
+</body>
+</html>

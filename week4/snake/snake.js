@@ -2,10 +2,10 @@
 
 const MAX = 20;
 
-const north = Pair( 0)(-1);
-const east  = Pair( 1)( 0);
-const south = Pair( 0)( 1);
-const west  = Pair(-1)( 0);
+const north = Pair(0)(-1);
+const east = Pair(1)(0);
+const south = Pair(0)(1);
+const west = Pair(-1)(0);
 
 let direction = north;
 
@@ -21,13 +21,13 @@ let snake = [
 let food = Pair(15)(15);
 
 // function snakeEquals(a, b) { return a.x === b.x && a.y === b.y }
-const pairEq = a => b =>  undefined; // todo: your code here
+const pairEq = a => b => a(fst) === b(fst) && a(snd) === b(snd);
 
 // Pair + Pair = Pair        // Monoid
-const pairPlus = a => b =>  undefined; // todo: your code here
+const pairPlus = a => b => Pair(a(fst) + b(fst))(a(snd) + b(snd));
 
 // Function and Pair = Pair  // Functor
-const pairMap = f => p =>  undefined; // todo: your code here
+const pairMap = f => pair => Pair(f(pair(fst)))(f(pair(snd)))
 
 
 function changeDirection(orientation) {
@@ -38,19 +38,19 @@ function changeDirection(orientation) {
 /**
  * when trying to get an element by id from the dom, the element might not be there
  * but in this case the application should not crash randomly
-* @return Either ErrorMessage or HTMLElement
-*/
+ * @return Either ErrorMessage or HTMLElement
+ */
 function safeGetElementById(id) {
     const result = document.getElementById(id);
-    return result === undefined; // todo: your code here
+    return result === undefined
+        ? Left("Cannot find element with id '" + id + "'")
+        : Right(result);
 }
 
 const log = s => console.log(s);
 
 function start() {
-
-    // todo: if safeGetElementById("canvas") yields an error message, log it. Otherwise startWithCanvas
-
+    safeGetElementById("canvas")(log)(startWithCanvas)
 }
 
 const startWithCanvas = canvas => {
@@ -58,7 +58,7 @@ const startWithCanvas = canvas => {
     const context = canvas.getContext("2d");
 
     const rightArrow = 39;
-    const leftArrow  = 37;
+    const leftArrow = 37;
     window.onkeydown = evt => {
         const orientation = (evt.keyCode === rightArrow) ? clockwise : countercw;
         changeDirection(orientation);
@@ -71,8 +71,12 @@ const startWithCanvas = canvas => {
 };
 
 const inBounds = x => {
-    if (x < 0)   { return MAX - 1 }
-    if (x > MAX) { return 0 }
+    if (x < 0) {
+        return MAX - 1
+    }
+    if (x > MAX) {
+        return 0
+    }
     return x
 };
 
@@ -81,7 +85,7 @@ function nextBoard() {
     const oldHead = snake[0];
 
     const newHead = undefined; // todo: your code here: old head plus direction
-    const head    = undefined; // todo: your code here: new head put in bounds
+    const head = undefined; // todo: your code here: new head put in bounds
 
     const pickRandom = () => Math.floor(Math.random() * max);
     if (true) {  // todo: have we found any food?
