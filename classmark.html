@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+
+    const failSafe = defaultValue => callback => callbackArgument => { try { return callback(callbackArgument); } catch (e) { return defaultValue; } };
+
+    const doError = x => {
+        throw new Error()
+    };
+    const errorCount = failSafe(1)(doError);
+
+    document.write(failSafe(false)(x => x)(true) && failSafe(true)(doError)(null) && errorCount(null) === 1);
+
+</script>
+
+</body>
+</html>
