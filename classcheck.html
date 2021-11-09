@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classcheck</title>
+</head>
+<body>
+
+<script>
+
+    const selectedArea = {
+        areaId: "84ed84ad-81e3-49ed-absjsjjjs",
+        name: "New york restaurant",
+
+        address: {
+            city: "New York",
+            postalCode: "0012231",
+            street: "New jersy"
+        }
+    };
+
+    const newArea = [
+        {
+            areaId: "84ed84ad-81e3-49ed-absjsjjjs",
+
+            name: "Veg retaurant",
+
+            address: {
+                city: "Calfornia",
+                postalCode: "0018383",
+                street: "Calfornia"
+            }
+        },
+        {
+            areaId: "84ed84ad-sjsjjs",
+
+            name: "Indian restaurant",
+
+            address: {
+                city: "Calfornia",
+                postalCode: "001aas8383",
+                street: "Calfornia"
+            }
+        },
+        {
+            areaId: "84ed84ad-81e3-49sjsjjshq8q",
+
+            name: "Desi restaurant",
+
+            address: {
+                city: "Calfornia",
+                postalCode: "0011881",
+                street: "Calfornia"
+            }
+        },
+        {
+            areaId: "84ed84ad-sjsjj-ssks-msms",
+
+            name: "chinese restaurant",
+
+            address: {
+                city: "Calfornia",
+                postalCode: "02992",
+                street: "Calfornia"
+            }
+        }
+    ];
+
+    const newArea2 =
+        {
+            areaId: "84ed84ad-81e3-49ed-absyay6w",
+
+            name: "Veg retaurant",
+
+            address: {
+                city: "Calfornia",
+                postalCode: "0018383",
+                street: "Calfornia"
+            }
+        }
+    ;
+
+    const selectedAreaMatch = (selectedArea, newArea) => {
+        console.log({selectedArea});
+        console.log({newArea}); // it can be object or arrays
+
+        // if does not match return true
+        // if match return false
+
+        for (let i = 0; i < newArea.length; i++) {
+            if (newArea[i].areaId === selectedArea.areaId) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    document.writeln(selectedAreaMatch(selectedArea, newArea));
+
+</script>
+
+</body>
+</html>
