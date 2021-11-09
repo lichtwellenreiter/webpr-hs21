@@ -9,7 +9,13 @@
 <script>
 
 
-    const failSafe = defaultValue => callback => callbackArgument => { try { return callback(callbackArgument); } catch (e) { return defaultValue; } };
+    const failSafe = defaultValue => callback => callbackArgument => {
+        try {
+            return callback(callbackArgument);
+        } catch (e) {
+            return defaultValue;
+        }
+    };
 
     const doError = x => {
         throw new Error()
