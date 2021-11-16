@@ -1,5 +1,3 @@
-
-
 const Observable = value => {
     const listeners = [];
     return {
@@ -7,7 +5,7 @@ const Observable = value => {
             listeners.push(callback);
             callback(value, value);
         },
-        getValue: ()       => value,
+        getValue: () => value,
         setValue: newValue => {
             if (value === newValue) return;
             const oldValue = value;
@@ -15,4 +13,4 @@ const Observable = value => {
             listeners.forEach(callback => callback(value, oldValue));
         }
     }
-};
+}

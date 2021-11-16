@@ -10,7 +10,6 @@
  * @returns {{equals: (function({a},{a}):undefined), getOk: (function(): Array<boolean>)}}
  * @constructor
  */
-
 const Assert = () => {
     /** @type {Array<boolean>} */
     const ok = [];
