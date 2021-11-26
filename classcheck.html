@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>classcheck</title>
+</head>
+<body>
+
+<div id="out"></div>
+
+<script>
+
+
+
+    /*const NullSafe = x => {
+        const isNullSafe = y => y && y.then;
+        const maywrap    = y => NullSafe(y) && !isNullSafe(y) ; // if y is not NullSafe yet, make it so
+        return {
+            then: fn =>  x !== null && maywrap(fn(x)) // see(1)
+        }
+    };*/
+
+
+    const NullSafe = x => {
+        const isNullSafe = y => y && y.then;
+        const maywrap    = y => NullSafe(y) && !isNullSafe(y);
+        return {
+            then: fn => Promise.resolve(x && maywrap(fn(x)))
+
+        }
+    };
+
+    NullSafe(1).then(console.log);                   // will call the log
+    NullSafe(null).then(console.log);                // will not call the log
+    NullSafe(2).then( x => null).then(console.log);  // will not call the log
+
+
+    // x_ and y_ are given. do not override.
+    let x_;
+    let y_;
+    document.writeln(NullSafe(x_)
+        .then( x => x*2)          // must auto-promote
+        .then( x => NullSafe(x))  // must not auto-promote
+        .then( x => y_ = x + 1)   // store value, check no double promotion
+        .then( x => null)         // jump over rest
+        .then( x => x.mustNotBeCalled) !== null && y_ === x_ * 2 + 1);
+</script>
+
+</body>
+</html>
