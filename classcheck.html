@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClassCheck</title>
+</head>
+<body>
+
+
+<script>
+
+
+    /*const palindrome = t => {
+        const fst = [...t]
+            .map(it=> it.toLowerCase())
+            .filter( it => it <= "z" && it >= "a")
+            .reduce( (acc, cur) => acc + cur , "" );
+
+        const snd = [...fst]
+            .reduce( (acc, cur) => {acc.unshift(cur); return acc;} , [] )
+            .reduce( (acc, cur) => acc + cur , "" );
+
+        return fst === snd;
+    }*/
+    /*
+        const str2chars = str => [...str];            // convert a string to an array of chars
+        const isAlpha = char => char.match(/[a-z]/); // char is in the alphabet
+
+        function palindrome(t) {
+            let lowerT = t.toLowerCase();
+            let ltr = str2chars(lowerT).filter((i) => isAlpha(i));
+            let rtl = [...ltr].reverse();
+            return ltr.toString() === rtl.toString();
+        }
+
+
+        console.log(palindrome("Amore, Roma!"));
+
+        document.writeln(
+            palindrome("Amore, Roma!")
+            && palindrome("Madam, I'm Adam!")
+            && palindrome("Never odd or even.")
+            && !palindrome("Amore")
+        )*/
+
+    /*
+     const NullSafe = x => {
+        const isNullSafe = y => y && y.then;
+        const mayWrap = y =>  NullSafe(y) && !isNullSafe(y) ;
+        return {
+            then: fn => x && mayWrap(fn(x))
+        }
+    }*/
+
+
+    const NullSafe = x => {
+        const isNullSafe = y => y && y.then;
+        const maywrap = y => NullSafe(y) && !isNullSafe(y); // if y is not NullSafe yet, make it so
+        return {
+            then: fn => x !== null && maywrap(fn(x)) // see(1)
+        }
+    };
+
+    //(1) if x is not null or undefined, call fn(x); either way, make sure the result is a NullSafe
+
+    //Fill the gaps such that NullSafe objects can be chained with their "then" function
+    //just like Promises do, incl. auto-promotion of result values to NullSafe objects.
+
+    // NullSafe(1).then(console.log);                   // will call the log
+    // NullSafe(null).then(console.log);                // will not call the log
+    // NullSafe(2).then(x => null).then(console.log);  // will not call the log
+
+    let x_, y_;
+    NullSafe(x_)
+        .then(x => x * 2)          // must auto-promote
+        .then(x => NullSafe(x))  // must not auto-promote
+        .then(x => y_ = x + 1)   // store value, check no double promotion
+        .then(x => null)         // jump over rest
+        .then(x => x.mustNotBeCalled) !== null && y_ === x_ * 2 + 1;
+
+</script>
+</body>
+</html>
