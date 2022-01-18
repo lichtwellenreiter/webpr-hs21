@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+
+    //const door = {open:false}
+
+    /*const open = door => {
+        if (door.open) {
+            return "already open";
+        }
+        door.open = true;
+        return "open";
+    };*/
+/*
+    const open = door => {
+        let result = "open";
+        door.open && (result = "already open");
+        door.open = true;
+        return result;
+
+    }
+
+    document.writeln("Door is ");
+    document.writeln(open(door) ||"closed")*/
+    // document.writeln(open(door) ? open(door) : "closed");
+    // document.writeln(door.open || "closed")
+
+    // write JS where its untrue
+    /*const value = [];
+    ;
+    document.writeln((value ? true : false) !== (value == true ? true : false));*/
+
+
+    const value = {};
+    ;
+    document.writeln((({} == value) === false) && (({} > value) === false) && (({} >= value) === true));
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
