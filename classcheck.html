@@ -5,6 +5,19 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    const NullSafe = x => {
+        const isNullSafe = y => y && y.then;
+        const maywrap = y => !isNullSafe(y) && NullSafe(y); // if y is not NullSafe yet, make it so
+        return {
+            then: fn => x && maywrap(fn(x)) // see(1)
+        }
+    };
 
+    NullSafe(1).then(console.log);
+    NullSafe(null).then(console.log);
+    NullSafe(2).then( x => null).then(console.log);
+
+</script>
 </body>
 </html>
